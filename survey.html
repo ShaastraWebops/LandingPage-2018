@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html style="width: 100%;">
+
 <head>
+	<meta charset="utf-8"/>
 	<title>Sampark Survey - Shaastra 2018</title>
-  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
   	<script type="text/javascript" src="./survey.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
-<body ng-app="surveyApp">
-	<div ng-controller="main as mainCtrl" style="width: 50%; margin: auto">
+<body ng-app="surveyApp" ng-controller="main as mainCtrl">
+	<div  style="width: 50%; margin: auto;">
 		<p ng-repeat="city in mainCtrl.citys">{{city._id}}, {{city.name}}</p>
 	</div>
 
-	<select ng-model="mainCtrl.city">
-		<option selected="selected">--Select City--</option>
-		<option ng-repeat="city in mainCtrl.citys">{{city.name}}</option>
+	<select ng-model="mainCtrl.city" ng-options="city.name for city in mainCtrl.citys">
 	</select>
+
 </body>
 </html>

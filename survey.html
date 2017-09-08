@@ -10,40 +10,36 @@
 </head>
 
 <body ng-app="surveyApp" ng-controller="main as mainCtrl">
-	<div  style="width: 50%; margin: auto;">
-		<p ng-repeat="city in mainCtrl.citys">{{city._id}}, {{city.name}}</p>
-	</div>
 
     <form name="userForm" novalidate>
 
         <div class="form-group">
 	    	<label>Select a City</label>
-			<select class="form-control" ng-required="true" ng-model="user.city" ng-options="city.name for city in mainCtrl.citys">
+			<select class="form-control" ng-required="true" ng-model="mainCtrl.city">
+				<option ng-repeat="city in mainCtrl.citys" value="{{city._id}}">{{city.name}}</option>
 			</select>
 		</div>	
 
 		<div class="form-group" ng-class="{ 'has-error' : userForm.workshop1.$invalid && (userForm.workshop1.$dirty || submitted)}">
 			<label>Workshop1</label>
-			<select name="workshop1" class="form-control" ng-model="user.workshop1" ng-required="true" ng-options="wshop for wshop in mainCtrl.workshops">
+			<select name="workshop1" class="form-control" ng-model="mainCtrl.workshop1" ng-required="true" ng-options="wshop for wshop in mainCtrl.workshops">
 			</select>
-			<p ng-show="userForm.gender.$error.required && (userForm.gender.$dirty || submitted)" class="help-block">Select gender.</p>
 		</div>
 
 		<div class="form-group">
 			<label>Workshop2</label>
-			<select class="form-control" ng-model="user.workshop2" ng-options="wshop for wshop in mainCtrl.workshops">
+			<select class="form-control" ng-model="mainCtrl.workshop2" ng-options="wshop for wshop in mainCtrl.workshops">
 			</select>
 		</div>
 
 		<div class="form-group">
 			<label>Workshop3</label>
-			<select class="form-control" ng-model="user.workshop3" ng-options="wshop for wshop in mainCtrl.workshops">
+			<select class="form-control" ng-model="mainCtrl.workshop3" ng-options="wshop for wshop in mainCtrl.workshops">
 			</select>
 		</div>	
 
 		<button type="submit" ng-click="mainCtrl.submitForm()" ng-disabled="userForm.$invalid" class="btn btn-primary">Submit</button>
 	</form>	
-
 
 </body>
 </html>

@@ -6,26 +6,35 @@ var workshops = ["Python", "Arduino", "Matlab", "Web Development", "Image Proces
 
 app.controller('main', function($http, $scope){
 
+	this.workshop1 = workshops;
 	this.workshops = workshops;
 	
+	this.optionChanged = function(ws){
+		w = []
+		for(x in workshops)
+		{
+			if(workshops[x] === ws)
+				workshops.splice(w, 1);
+		}
+	}
 	$http.get('http://shaastra.org:8080/api/citys').then(res => {
 		this.citys = res.data;
 	});
 
-	this.addCity = function(){
-		ws = []
-		for(w in workshops)
-		{
-			ws.push({
-				name: w,
-				count:0
-			});
-		}
-		$http.post('http://shaastra.org:8080/api/citys', {
-			name: this.city1,
-			workshops: ws
-		}).then(res => {console.log(res.status);});
-	}
+	// this.addCity = function(){
+	// 	ws = []
+	// 	for(w in workshops)
+	// 	{
+	// 		ws.push({
+	// 			name: workshops[w],
+	// 			count:0
+	// 		});
+	// 	}
+	// 	$http.post('http://shaastra.org:8080/api/citys', {
+	// 		name: this.city1,
+	// 		workshops: ws
+	// 	}).then(res => {console.log(res.status);});
+	// }
 
 	this.submitForm = function(){
 		this.subCity = {
@@ -69,7 +78,11 @@ app.controller('main', function($http, $scope){
 				name: this.name,
 				workshops: workshops
 			}).then(res => {
-				console.log(res.status);
+				if(res.status === 200)
+				{
+					alert('Submitted Successfully');
+					window.location = 'http://shaastra.org';
+				}
 			})
 		});		
 	}

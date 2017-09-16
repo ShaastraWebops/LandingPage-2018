@@ -1,8 +1,13 @@
 var app = angular.module('surveyApp', []);
 
-var workshops = ["Python", "Arduino", "Matlab", "Web Development", "Image Processing", "Machine Learning",
-    "Fusion",  "R", "Eagle, PCB Design", "Cosmic Presentation", "Photoshop & Lightroom", "After Effects",
-    "E-Commerce", "Ethical Hacking", "Drone Demonstration", "Advanced Programming Workshop"];
+var workshops = [{'name': "Python"}, {'name':"Arduino"}, {'name':"Matlab"}, {'name':"Web Development"}, {'name':"Image Processing"}, {'name':"Machine Learning"},
+    {'name':"Fusion"},  {'name':"R"}, {'name':"Eagle, PCB Design"}, {'name':"Cosmic Presentation"}, {'name':"Photoshop & Lightroom"}, {'name':"After Effects"},
+   {'name': "E-Commerce"}, {'name':"Ethical Hacking"}, {'name':"Drone Demonstration"}, {'name':"Advanced Programming Workshop"}];
+
+// for(var i=0; i< workshops.length;i++){
+// 	workshops[i].selected = false;
+// 	console.log(workshops[i]);
+// }
 
 app.controller('main', function($http, $scope){
 
@@ -13,8 +18,9 @@ app.controller('main', function($http, $scope){
 		w = []
 		for(x in workshops)
 		{
-			if(workshops[x] === ws)
-				workshops.splice(w, 1);
+			// if(workshops[x] === ws)
+			// 	workshops[x].selected =true;
+			console.log(workshops[x]);
 		}
 	}
 	$http.get('http://shaastra.org:8080/api/citys').then(res => {
@@ -36,17 +42,28 @@ app.controller('main', function($http, $scope){
 	// 	}).then(res => {console.log(res.status);});
 	// }
 
+	this.filterWorkshop = function(item)
+		{			
+		return (item!= $scope.workshop11) && (item!= $scope.workshop21);
+		}
 	this.submitForm = function(){
 		this.subCity = {
 			name: "",
-			workshops: []
+			workshops: [],
+			suggestions: []
 		};
 		
 		$http.get('http://shaastra.org:8080/api/citys/'+this.city).then(res => {
 			this.subCity = res.data;
 
 			name = this.subCity.name;
-			workshops = []
+			workshops = [];
+			console.log(this.suggestion);
+			if(this.suggestion!=null){
+				this.subCity.suggestions.push(this.suggestion);
+			}
+
+
 			for(var i=0; i<this.subCity.workshops.length;i++)
 			{
 				if(this.subCity.workshops[i].name === this.workshop1)
@@ -73,10 +90,12 @@ app.controller('main', function($http, $scope){
 				else
 					workshops.push(this.subCity.workshops[i]);
 			}
-			
-			$http.put('http://shaastra.org:8080/api/citys/'+this.city, {
+			if(this.suggestion!=null){
+
+				$http.put('http://shaastra.org:8080/api/citys/'+this.city, {
 				name: this.name,
-				workshops: workshops
+				workshops: workshops,
+				suggestions: this.subCity.suggestions
 			}).then(res => {
 				if(res.status === 200)
 				{
@@ -84,6 +103,20 @@ app.controller('main', function($http, $scope){
 					window.location = 'http://shaastra.org';
 				}
 			})
+			}else{
+				$http.put('http://shaastra.org:8080/api/citys/'+this.city, {
+				name: this.name,
+				workshops: workshops,
+			}).then(res => {
+				if(res.status === 200)
+				{
+					alert('Submitted Successfully');
+					window.location = 'http://shaastra.org';
+				}
+			})
+
+			}
+			
 		});		
 	}
 })

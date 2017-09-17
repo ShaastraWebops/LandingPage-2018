@@ -3,8 +3,7 @@
 <head>
     <title>Shaastra 2018</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="font-awesome.min.css">
-    <link rel="stylesheet" href="bootstrap.css"> -->
+    <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700|Oswald" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
@@ -22,8 +21,7 @@ body{
 .bottom{
   display: flex;
   flex-direction: column;
-  /* padding-left: 2.5vw;
-  border-left: 1px solid #3065BF; */
+  border-left: 1px solid #3065BF;
 }
 
 
@@ -76,9 +74,6 @@ body{
   padding-right: 20px;
   font-weight: 700;
   font-size: 10vw;
-  /* border-right: 15px solid #3065BF;
-  border-bottom: 15px solid #3065BF; */
-
 }
 
 a{
@@ -99,12 +94,9 @@ a{
 
 .bottom h4{
   display: inline-block;
-  /* padding: 8px 15px; */
   color: white;
   letter-spacing: 1px;
   text-transform: uppercase;
-  /* border-bottom: 2px solid black; */
-  /* font-weight: 300; */
   white-space: pre-wrap;
   word-wrap: break-word;
   font-size: 21px;
@@ -298,10 +290,8 @@ img{
 <body ng-app="surveyApp"  ng-controller="main as mainCtrl">
   <div class="bigbox">
     
-      <!-- ng-init="toggle = true; day = new Date.now(); dayDif = (new Date()- new Date("2018-01-01T07:00:00.000Z"))/ 1000 / 60 / 60 / 24;" -->
     <div class="top" >
       <h1>SHAASTRA'18</h1>
-      <!-- <h2 style="color:black; font-size:8vw; margin-bottom:60px;">coming soon</h2> -->
       <h2>{{4+4}} {{date | date:'yyyy-MM-dd'}} days to go</h2>
 
       
@@ -311,7 +301,7 @@ img{
       
       <div class="samparksurvey m" ng-click="toggle=!toggle">
             <h2>Hey, let us know what workshops would you like us to conduct, at your place</h2>
-            <h3>click to fill the form{{toggle}}</h3>
+            <h3>click to fill the form</h3>
       </div>
 
     <div class="modal" ng-show=toggle ng-click="toggle=!toggle">
@@ -320,34 +310,41 @@ img{
           <h1>Fill in your preferred workshops for Sampark</h1>
               
           <form name="userForm" novalidate>
-      
-          <div class="form-group">
-              <label>Which City are you from?</label>
+
+            <div class="form-group">
+              <label>Which City are you from?<br></label>
               <select class="form-control" ng-required="true" ng-model="mainCtrl.city">
-              <option ng-repeat="city in mainCtrl.citys" value="{{city._id}}">{{city.name}}</option>
+                <option ng-repeat="city in mainCtrl.citys" value="{{city._id}}">{{city.name}}</option>
               </select>
-          </div>	
-      
-          <div>
-            <div class="form-group" ng-class="{ 'has-error' : userForm.workshop1.$invalid && (userForm.workshop1.$dirty || submitted)}">
-              <label>Select your 1st preference</label>
-              <select class="form-control" ng-model="mainCtrl.workshop1" ng-required="true" ng-options="wshop for wshop in mainCtrl.workshops" ng-change="mainCtrl.optionChanged(mainCtrl.workshop1)">
-              </select>
+            </div>  
+
+            <div>
+              <div class="form-group" ng-class="{ 'has-error' : userForm.workshop1.$invalid && (userForm.workshop1.$dirty || submitted)}">
+                <label>Select your 1st preference<br></label>
+                <select class="form-control" ng-model="workshop11" ng-required="true" ng-options="wshop.name for wshop in mainCtrl.workshops" ng-click="mainCtrl.optionChanged(workshop11)">
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>2nd preference</label>
+                <select class="form-control" ng-model="workshop21" ng-required="true" ng-options="wshop.name for wshop in mainCtrl.workshops | filter:{name:'!'+workshop11.name}" ng-click="mainCtrl.optionChanged(workshop21)">
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label>3rd preference</label>
+                <select class="form-control" ng-model="workshop31" ng-required="true" ng-options="wshop.name for wshop in mainCtrl.workshops | filter: mainCtrl.filterWorkshop"  ng-click="mainCtrl.optionChanged(workshop31)">
+                </select>
+              </div>  
+
+              <div class="form-group">
+                <label>Give us your Suggestions about Sampark</label>
+              <input class="form-control" type="text" ng-model="mainCtrl.suggestion" ng-required="false" >
+              </div>  
+
+              <button type="submit" ng-click="mainCtrl.submitForm()" ng-disabled="userForm.$invalid" class="btn btn-primary">Submit</button>
             </div>
-            <div class="form-group">
-              <label>2nd preference</label>
-              <select class="form-control" ng-model="mainCtrl.workshop2" ng-required="true" ng-options="wshop for wshop in mainCtrl.workshops" ng-change="mainCtrl.optionChanged(mainCtrl.workshop2)">
-              </select>
-            </div>
-            <div class="form-group">
-              <label>3rd preference</label>
-              <select class="form-control" ng-model="mainCtrl.workshop3" ng-required="true" ng-options="wshop for wshop in mainCtrl.workshops" ng-change="mainCtrl.optionChanged(mainCtrl.workshop3)">
-              </select>
-            </div>
-            <button type="submit" ng-click="mainCtrl.submitForm()" ng-disabled="userForm.$invalid" class="btn btn-primary">Submit</button>
-            </div>
-            
-            </form>	
+          </form>
           </div>
       </div>
       
@@ -355,7 +352,6 @@ img{
       <div class="one m">
       <h2>We are hiring CAMPUS AMBASSADORS.</h2>
       <h3> Register and become the representative of Shaastra in your college / region</h3>
-      <!-- <a href="http://ca.shaastra.org">http://ca.shaastra.org</a> -->
       <h4>http://ca.shaastra.org</h4>
       </div>
       </a>
@@ -364,7 +360,6 @@ img{
       <div class="two m">
       <h2>SUMMIT registations are open.</h2>
       <h3> Register to take part in the summit.</h3>
-      <!-- <a href="http://summitportal.shaastra.org/">http://summitportal.shaastra.org</a> -->
       <h4>http://summitportal.shaastra.org</h4>
       </div>
       </a>

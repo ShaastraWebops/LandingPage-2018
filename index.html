@@ -141,46 +141,7 @@ a{
   transform: translateY(-2px);
 }
 
-@media only screen and (max-width: 768px) {
-  body{
-    overflow: visible;
-  }
 
-  .top h1{
-    border: none;
-  }
-
-  .bottom{
-    padding-left: 0;
-    border:  none;
-  }
-
-  .social{
-    border-top: 1px solid #3065BF;
-    position: fixed;
-    bottom: 0;
-    text-align: center;
-    padding: 20px 0;
-    background: white;
-    width: 100%;
-}
-
-.bottom h4{
-    font-size: 12px;
-  }
-
-.social br{
-  display: none;
-}
-
-.fa{
-  color: #2F80ED;
-}
-
-img{
-  display: none;
-}
-}
 
 @media only screen and (min-width: 768px){
   .bigbox{
@@ -193,6 +154,8 @@ img{
     top:30px;
     font-size: 18px;
   }
+
+  
 
   
 
@@ -233,11 +196,12 @@ img{
 
 .inside{
   padding: 30px;
-  margin: 10% 30%;
+  margin: 5% 30%;
   background: white;
   border: 2px solid blueviolet;
   /* box-shadow: 0 0 15px gainsboro; */
   border-radius: 2px;
+  
 }
 
 .modal h1{
@@ -258,16 +222,21 @@ img{
 }
 
 .form-group{
-  margin: 20px 0 40px 0;
+  margin: 10px 0 20px 0;
 }
 
-.modal form select{
+.modal form select, .modal form input{
   border-radius: 0px;
   margin: 5px 0;
   height: 20px;
-  max-width: 300px;
+  min-width: 200px;
   background: white;
   
+}
+
+.modal form input{
+  height: 100px;
+  width: 100%;
 }
 
 .modal .btn{
@@ -276,7 +245,7 @@ img{
   background: #4568DC;  /* fallback for old browsers */
   background: -webkit-linear-gradient(45deg, #B06AB3, #4568DC);  /* Chrome 10-25, Safari 5.1-6 */
   background: linear-gradient(45deg, #B06AB3, #4568DC);  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  padding: 2% 5%;
+  padding: 10px 20px;
   box-shadow: 0 2px 5px gainsboro;
   border: 0;
   color: white;
@@ -288,9 +257,53 @@ img{
   color: white;
   position: absolute;
   box-shadow: none;
-  left: 60%;
-  top: 12%;
+  margin-top: 2%;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+  body{
+    overflow: visible;
+  }
+
+  .top h1{
+    border: none;
+  }
+
+  .bottom{
+    padding-left: 0;
+    border:  none;
+  }
+
+  .inside{
+    margin: 2%;
+  }
+
+  .social{
+    border-top: 1px solid #3065BF;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    padding: 20px 0;
+    background: white;
+    width: 100%;
+}
+
+.bottom h4{
+    font-size: 12px;
+  }
+
+.social br{
+  display: none;
+}
+
+.fa{
+  color: #2F80ED;
+}
+
+img{
+  display: none;
+}
 }
 
 </style>
@@ -336,19 +349,19 @@ img{
               </div>
 
               <div class="form-group">
-                <label>2nd preference</label>
+                <label>2nd preference<br></label>
                 <select class="form-control" ng-model="workshop21" ng-required="true" ng-options="wshop.name for wshop in mainCtrl.workshops | filter:{name:'!'+workshop11.name}" ng-click="mainCtrl.optionChanged(workshop21)">
                 </select>
               </div>
 
               <div class="form-group">
-                <label>3rd preference</label>
+                <label>3rd preference<br></label>
                 <select class="form-control" ng-model="workshop31" ng-required="true" ng-options="wshop.name for wshop in mainCtrl.workshops | filter: mainCtrl.filterWorkshop"  ng-click="mainCtrl.optionChanged(workshop31)">
                 </select>
               </div>  
 
               <div class="form-group">
-                <label>Give us your Suggestions about Sampark</label>
+                <label>Give us your Suggestions about Sampark</label><br>
               <input class="form-control" type="text" ng-model="mainCtrl.suggestion" ng-required="false" >
               </div>  
 

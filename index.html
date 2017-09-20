@@ -21,7 +21,6 @@ body{
 .bottom{
   display: flex;
   flex-direction: column;
-  border-left: 1px solid #3065BF;
 }
 
 
@@ -284,6 +283,16 @@ img{
   font-size: 14px;
 }
 
+.modal .close{
+  background: transparent;
+  color: white;
+  position: absolute;
+  box-shadow: none;
+  left: 60%;
+  top: 12%;
+  cursor: pointer;
+}
+
 </style>
 </head>
 
@@ -305,6 +314,7 @@ img{
       </div>
 
     <div class="modal" ng-show=toggle ng-click="toggle=!toggle">
+        <button type="submit"  class="close btn btn-primary">X CLOSE</button>
         <div  class="inside"  ng-click="$event.stopPropagation();">
               
           <h1>Fill in your preferred workshops for Sampark</h1>
@@ -343,6 +353,7 @@ img{
               </div>  
 
               <button type="submit" ng-click="mainCtrl.submitForm()" ng-disabled="userForm.$invalid" class="btn btn-primary">Submit</button>
+              
             </div>
           </form>
           </div>

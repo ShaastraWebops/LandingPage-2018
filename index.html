@@ -350,7 +350,7 @@ img{
 
               <div class="form-group">
                 <label>2nd preference<br></label>
-                <select class="form-control" ng-model="workshop21" ng-required="true" ng-options="wshop.name for wshop in mainCtrl.workshops | filter:{name:'!'+workshop11.name}" ng-click="mainCtrl.optionChanged(workshop21)">
+                <select class="form-control" ng-model="workshop21" ng-required="true" ng-options="wshop.name for wshop in mainCtrl.workshops | filter:mainCtrl.filterWorkshop1" ng-click="mainCtrl.optionChanged(workshop21)">
                 </select>
               </div>
 

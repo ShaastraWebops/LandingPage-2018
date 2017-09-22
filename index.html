@@ -154,7 +154,7 @@ a{
     top:30px;
     font-size: 18px;
   }
-
+  
   
 
   
@@ -254,10 +254,8 @@ a{
 
 .modal .close{
   background: transparent;
-  color: white;
-  position: absolute;
+  color: black;
   box-shadow: none;
-  margin-top: 2%;
   cursor: pointer;
 }
 
@@ -280,7 +278,7 @@ a{
   }
 
   .social{
-    border-top: 1px solid #3065BF;
+    border-top: 1px solid gainsboro;
     position: fixed;
     bottom: 0;
     text-align: center;
@@ -298,7 +296,8 @@ a{
 }
 
 .fa{
-  color: #2F80ED;
+  color: blueviolet;
+  font-size: 24px;
 }
 
 img{
@@ -326,10 +325,10 @@ img{
             <h3>click to fill the form</h3>
       </div>
 
-    <div class="modal" ng-show=toggle ng-click="toggle=!toggle">
-        <button type="submit"  class="close btn btn-primary">X CLOSE</button>
-        <div  class="inside"  ng-click="$event.stopPropagation();">
-              
+    <div class="modal" ng-show=toggle>
+        
+        <div  class="inside">
+          
           <h1>Fill in your preferred workshops for Sampark</h1>
               
           <form name="userForm" novalidate>
@@ -366,7 +365,7 @@ img{
               </div>  
 
               <button type="submit" ng-click="mainCtrl.submitForm()" ng-disabled="userForm.$invalid" class="btn btn-primary">Submit</button>
-              
+              <button type="submit"  class="close btn btn-primary" ng-click="toggle=!toggle">CLOSE</button>
             </div>
           </form>
           </div>

@@ -13,6 +13,11 @@ app.controller('main', function($http, $scope){
 
 	this.workshop1 = workshops;
 	this.workshops = workshops;
+
+	this.date = Date.now();
+	this.shaastra = new Date("2018-01-04")
+
+	this.days = Math.floor( (this.shaastra - this.date) / (60 * 60 * 1000 * 24));
 	
 	this.optionChanged = function(ws){
 		w = []

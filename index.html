@@ -23,8 +23,6 @@ body{
   flex-direction: column;
 }
 
-
-
 .fa{
   margin:0 7vw;
   color: whitesmoke;
@@ -40,15 +38,10 @@ body{
   margin: 10px 0;
 }
 
-.top h2{
-  margin-bottom: 10vh;
-}
-
 .bigbox{
   border-radius: 5px;
   color: whitesmoke;
   padding-bottom: 100px;
-
 }
 
 .img1{
@@ -67,12 +60,17 @@ body{
   filter: invert();
 }
 
+.logos{
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+}
 
 .top h1{
   display: inline-block;
   padding-right: 20px;
   font-weight: 700;
-  font-size: 10vw;
+  font-size: 8vw;
 }
 
 a{
@@ -154,10 +152,6 @@ a{
     top:30px;
     font-size: 18px;
   }
-  
-  
-
-  
 
   br{
     display: block;
@@ -166,11 +160,11 @@ a{
   .fa{
     margin: 10px 20px;
     padding: 3px;
+    color: #B06AB3;
   }
 
   .fa:hover{
-    
-    color: #3065BF;
+    color: #ffffff;
   }
 
 }
@@ -196,7 +190,7 @@ a{
 
 .inside{
   padding: 30px;
-  margin: 5% 30%;
+  margin: 2% 30% 5%;
   background: white;
   border: 2px solid blueviolet;
   /* box-shadow: 0 0 15px gainsboro; */
@@ -259,7 +253,7 @@ a{
   cursor: pointer;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 767px) {
   body{
     overflow: visible;
   }
@@ -289,24 +283,34 @@ a{
     padding: 20px 0;
     background: white;
     width: 100%;
-}
-
-.bottom h4{
-    font-size: 12px;
   }
 
-.social br{
-  display: none;
+  .bottom h4{
+      font-size: 12px;
+    }
+
+  .social br{
+    display: none;
+  }
+
+  .fa{
+    color: blueviolet;
+    font-size: 24px;
+  }
+
+  img{
+    display: none;
+  }
+
+  .date{
+    display: none;
+  }
 }
 
-.fa{
-  color: blueviolet;
-  font-size: 24px;
-}
-
-img{
-  display: none;
-}
+.date{
+  position: absolute;
+  right: 5px;
+  top: 5px;
 }
 
 </style>
@@ -314,12 +318,10 @@ img{
 
 <body ng-app="surveyApp"  ng-controller="main as mainCtrl">
   <div class="bigbox">
+     <h2 class="date"><span style="color: #B06AB3;font-size: 3em;">{{mainCtrl.days}}</span><br> days to go</h2>
     
     <div class="top" >
       <h1>SHAASTRA'18</h1>
-<!--      <h2>{{4+4}} {{date | date:'yyyy-MM-dd'}} days to go</h2> -->
-
-      
     </div>
 
     <div class="bottom" >
@@ -378,7 +380,7 @@ img{
       <a href="http://ca.shaastra.org">
       <div class="one m">
       <h2>We are hiring CAMPUS AMBASSADORS.</h2>
-      <h3> Register and become the representative of Shaastra in your college / region</h3>
+      <h3> Become the representative of Shaastra in your college / region</h3>
       <h4>http://ca.shaastra.org</h4>
       </div>
       </a>
@@ -406,8 +408,5 @@ img{
     <img class="img2" src="iitm.png">
   </div>
 
-
-
 </body>
-
 </html>
